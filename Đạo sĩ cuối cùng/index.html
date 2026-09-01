@@ -1,0 +1,1700 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đạo sĩ cuối cùng</title>
+    
+    <link rel="preconnect" href="https://res.cloudinary.com">
+    <link rel="dns-prefetch" href="//res.cloudinary.com">
+    <link rel="preconnect" href="https://www.youtube.com">
+    <link rel="dns-prefetch" href="//www.youtube.com">
+
+    <script>
+        (function() {
+            const MAT_KHAU_CHUAN = "ĐẠO SĨ CUỐI CÙNG";
+            let daXacThuc = false;
+            
+            while (!daXacThuc) {
+                let nhapMatKhau = prompt("Trang web ẩn! Vui lòng nhập mật khẩu để vào xem phim:");
+                
+                if (nhapMatKhau === null) {
+                    window.location.href = "https://daosicuoicung.pages.dev/";
+                    break;
+                } else if (nhapMatKhau.trim() === MAT_KHAU_CHUAN) {
+                    daXacThuc = true;
+                    sessionStorage.setItem("logged_in", "true");
+                } else {
+                    alert("Sai mật khẩu! Vui lòng thử lại.");
+                }
+            }
+        })();
+    </script>
+
+    <style>   
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            padding: 10px;
+            overflow-x: hidden;
+            font-family: "Times New Roman", Times, serif;
+            background-color: rgb(31, 31, 31);
+            color: white;
+        }
+
+        h1 {
+            font-size: 50px;
+            color: white;
+            max-width: 100%;
+            word-wrap: break-word;
+        }
+
+        p, li, a {
+            max-width: 100%;
+            word-wrap: break-word;
+        }
+
+        p, li {
+            font-size: 30px;
+            color: white;
+        }
+
+        a {
+            font-size: 30px;
+            color: rgb(255, 238, 0);
+            text-decoration: underline;
+        }
+
+        .btn-style {
+            display: inline-block;
+            font-size: 30px;
+            font-family: "Times New Roman", Times, serif;
+            color: rgb(255, 0, 0);
+            background-color: gold;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px 0;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .btn-style:hover {
+            background: red;
+            color: rgb(255, 238, 0);
+            transform: scale(1.05);
+            box-shadow: 0 0 50px gold;
+        }
+
+        video, iframe, img {
+            display: block;
+            margin: 20px auto;
+            max-width: 100%;
+            border-radius: 8px;
+            transition: 0.5s;
+        }
+
+        video:hover, iframe:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 50px gold;
+        }
+
+        audio {
+            width: 900px;
+            max-width: 100%;
+            display: block;
+            margin: 20px auto;
+        }
+
+        footer {
+            text-align: center;
+            margin: 40px auto 20px;
+            font-size: 20px;
+        }
+
+        .top-btn {
+            position: fixed;
+            right: 1px;
+            bottom: 10px;
+            background: red;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 70px;
+            text-decoration: none;
+            font-size: 22px;
+            font-weight: bold;
+            z-index: 999;
+            transition: 0.5s;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .top-btn:hover {
+            background: rgb(251, 255, 0);
+            color: black;
+            transform: scale(1.03);
+            box-shadow: 0 0 50px rgb(255, 251, 0);
+        }
+
+        #profile {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgb(255, 208, 0);
+            color: black;
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 9999;
+            box-shadow: 0 0 10px gold;
+            user-select: none;
+        }
+
+        #menu {
+            display: none;
+            position: fixed;
+            top: 75px;
+            right: 15px;
+            width: 240px;
+            background: #2b2b2b;
+            color: white;
+            padding: 15px;
+            border-radius: 12px;
+            z-index: 9999;
+            box-shadow: 0 0 15px black;
+        }
+
+        #menu button {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .firefly {
+            position: fixed;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            pointer-events: none;
+            background: #ffe600;
+            box-shadow:
+                0 0 10px #ffe600,
+                0 0 25px #ffe600,
+                0 0 50px #ffff99,
+                0 0 80px #ffffcc;
+            animation: fly 1.5s ease-out forwards;
+            z-index: 999999;
+        }
+
+        @keyframes fly {
+            from {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+            to {
+                opacity: 0;
+                transform: translateY(-60px) scale(0);
+            }
+        }
+
+        ::-webkit-scrollbar {
+            width: 16px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #111;
+            border-radius: 20px;
+            box-shadow: inset 0 0 8px #000;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            border-radius: 20px;
+            background: linear-gradient(
+                to bottom,
+                #fff9b0,
+                #ffe600,
+                #ffd000,
+                #ffea00,
+                #fff9b0
+            );
+            border: 2px solid #fff36a;
+            box-shadow:
+                0 0 8px #ffe600,
+                0 0 18px #ffe600,
+                0 0 35px gold,
+                0 0 60px #ffff99;
+            animation: goldGlow 1.5s infinite alternate;
+            transition: .3s;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            box-shadow:
+                0 0 15px #fff000,
+                0 0 30px gold,
+                0 0 50px yellow,
+                0 0 80px #ffff99;
+            transform: scale(1.1);
+        }
+
+        @keyframes goldGlow {
+            from {
+                filter: brightness(1);
+            }
+            to {
+                filter: brightness(1.5);
+            }
+        }
+
+        .search-box {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 30px;
+            flex-wrap: wrap;
+        }
+
+        .search-box input {
+            width: 500px;
+            padding: 15px;
+            font-size: 22px;
+            border-radius: 40px;
+            border: 3px solid gold;
+            background: #222;
+            color: white;
+            transition: 0.3s;
+        }
+
+        .search-box button {
+            padding: 15px 25px;
+            font-size: 20px;
+        }
+
+        .search-box input:focus {
+            transform: scale(1.05);
+            box-shadow:
+                0 0 15px gold,
+                0 0 35px yellow,
+                0 0 60px orange;
+            border: 3px solid #fff700;
+            background: #444;
+        }
+
+        .search-box input::placeholder {
+            transition: .3s;
+        }
+
+        .search-box input:focus::placeholder {
+            color: gold;
+            letter-spacing: 2px;
+        }
+
+        #intro {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 999999999;
+            overflow: hidden;
+        }
+
+        #intro video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        #website {
+            display: none;
+            animation: fadeIn 1s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        #skipBtn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 12px 25px;
+            font-size: 20px;
+            border: none;
+            border-radius: 40px;
+            background: gold;
+            cursor: pointer;
+            z-index: 999999999;
+        }
+
+        #skipBtn:hover {
+            background: red;
+            color: white;
+        }
+
+        /* =========================================================
+   MÀN HÌNH BẮT ĐẦU - PHIÊN BẢN NÂNG CẤP
+   ========================================================= */
+
+#startScreen {
+    position: fixed;
+    inset: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(255, 215, 0, 0.16) 0%,
+            rgba(80, 65, 0, 0.10) 18%,
+            rgba(0, 0, 0, 0.96) 65%
+        ),
+        linear-gradient(
+            135deg,
+            #050505 0%,
+            #171300 45%,
+            #020202 100%
+        );
+
+    overflow: hidden;
+
+    z-index: 9999999999;
+}
+
+
+/* Ánh sáng vàng phía sau */
+#startScreen::before {
+    content: "";
+
+    position: absolute;
+
+    width: 650px;
+    height: 650px;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255, 215, 0, 0.20) 0%,
+            rgba(255, 215, 0, 0.08) 25%,
+            transparent 70%
+        );
+
+    filter: blur(10px);
+
+    animation: startGlow 4s ease-in-out infinite alternate;
+
+    pointer-events: none;
+}
+
+
+/* Viền ánh sáng chạy nhẹ */
+#startScreen::after {
+    content: "";
+
+    position: absolute;
+    inset: 20px;
+
+    border: 1px solid rgba(255, 215, 0, 0.10);
+
+    border-radius: 30px;
+
+    box-shadow:
+        inset 0 0 50px rgba(255, 215, 0, 0.04),
+        0 0 50px rgba(255, 215, 0, 0.03);
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   TIÊU ĐỀ
+   ========================================================= */
+
+#startScreen h1 {
+    position: relative;
+
+    margin: 0 20px 38px;
+
+    text-align: center;
+
+    font-size: clamp(42px, 7vw, 90px);
+
+    font-weight: bold;
+
+    color: white;
+
+    letter-spacing: 3px;
+
+    text-shadow:
+        0 0 8px rgba(255, 255, 255, 0.7),
+        0 0 18px gold,
+        0 0 35px gold,
+        0 0 70px rgba(255, 215, 0, 0.35);
+
+    z-index: 2;
+
+    animation:
+        titleGlow 3s ease-in-out infinite alternate,
+        titleFloat 5s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   NÚT BẮT ĐẦU
+   ========================================================= */
+
+#startBtn {
+    position: relative;
+
+    z-index: 3;
+
+    min-width: 280px;
+
+    padding: 18px 55px;
+
+    border: none;
+
+    border-radius: 60px;
+
+    font-family:
+        "Times New Roman",
+        Times,
+        serif;
+
+    font-size: clamp(25px, 4vw, 40px);
+
+    font-weight: bold;
+
+    color: #161000;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff7b0 0%,
+            #ffe600 35%,
+            #ffc400 65%,
+            #ffae00 100%
+        );
+
+    cursor: pointer;
+
+    box-shadow:
+        0 0 10px rgba(255, 215, 0, 0.7),
+        0 0 25px rgba(255, 215, 0, 0.5),
+        0 0 60px rgba(255, 215, 0, 0.22);
+
+    transition:
+        transform .35s ease,
+        box-shadow .35s ease,
+        background .35s ease;
+}
+
+
+/* Viền sáng */
+#startBtn::before {
+    content: "";
+
+    position: absolute;
+
+    inset: -3px;
+
+    border-radius: inherit;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.8),
+            transparent
+        );
+
+    opacity: 0;
+
+    z-index: -1;
+
+    transition: .4s;
+}
+
+
+/* Hover */
+#startBtn:hover {
+    transform: scale(1.10);
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff5c5c,
+            #ff0000,
+            #a80000
+        );
+
+    box-shadow:
+        0 0 15px red,
+        0 0 35px red,
+        0 0 80px rgba(255, 0, 0, 0.35);
+}
+
+
+#startBtn:hover::before {
+    opacity: 1;
+}
+
+
+/* Khi bấm */
+#startBtn:active {
+    transform: scale(0.96);
+}
+
+
+/* =========================================================
+   ANIMATION
+   ========================================================= */
+
+@keyframes startGlow {
+
+    from {
+        transform:
+            translate(-50%, -50%)
+            scale(0.9);
+
+        opacity: .65;
+    }
+
+    to {
+        transform:
+            translate(-50%, -50%)
+            scale(1.15);
+
+        opacity: 1;
+    }
+}
+
+
+@keyframes titleGlow {
+
+    from {
+        text-shadow:
+            0 0 8px rgba(255,255,255,.7),
+            0 0 18px gold,
+            0 0 35px gold;
+    }
+
+    to {
+        text-shadow:
+            0 0 12px white,
+            0 0 30px gold,
+            0 0 60px gold,
+            0 0 100px rgba(255,215,0,.4);
+    }
+}
+
+
+@keyframes titleFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-7px);
+    }
+}
+
+
+/* =========================================================
+   LÁ BÙA GỐC - CLOUDINARY
+   ========================================================= */
+
+#talisman {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+
+    width: min(230px, 26vw);
+    height: auto;
+    aspect-ratio: 0.47 / 1;
+
+    transform:
+        translate3d(-50%, -50%, 0)
+        scale(0)
+        rotateZ(-7deg)
+        rotateX(8deg)
+        rotateY(-6deg);
+
+    transform-origin: center center;
+
+    opacity: 0;
+    pointer-events: none;
+    z-index: 999999999999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    perspective: 1000px;
+
+    will-change:
+        transform,
+        opacity,
+        filter;
+
+    filter:
+        drop-shadow(0 0 8px rgba(255, 210, 80, .55))
+        drop-shadow(0 0 24px rgba(255, 170, 0, .35));
+}
+
+/* ẢNH BÙA THẬT */
+#talisman img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    border-radius: 2px;
+
+    user-select: none;
+    -webkit-user-drag: none;
+
+    backface-visibility: hidden;
+
+    transform-origin: center center;
+
+    filter:
+        saturate(.92)
+        contrast(1.04)
+        brightness(1.04);
+
+    box-shadow:
+        0 0 7px rgba(255, 220, 100, .38),
+        0 0 22px rgba(255, 180, 0, .28);
+
+    will-change:
+        transform,
+        filter;
+}
+
+/* ÁNH SÁNG QUÉT TRÊN MẶT BÙA */
+#talisman::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    pointer-events: none;
+    z-index: 5;
+
+    border-radius: 3px;
+
+    background:
+        linear-gradient(
+            105deg,
+            transparent 34%,
+            rgba(255,255,255,.28) 47%,
+            rgba(255,225,120,.16) 53%,
+            transparent 66%
+        );
+
+    background-size: 240% 100%;
+
+    opacity: 0;
+
+    mix-blend-mode: screen;
+}
+
+/* VIỀN PHÁT SÁNG NHẸ */
+#talisman::after {
+    content: "";
+
+    position: absolute;
+    inset: -4px;
+
+    pointer-events: none;
+
+    border-radius: 4px;
+
+    border: 1px solid rgba(255,215,100,.28);
+
+    box-shadow:
+        0 0 12px rgba(255,215,0,.28),
+        inset 0 0 12px rgba(255,215,0,.12);
+
+    opacity: .75;
+}
+
+
+/* =========================================================
+   ANIMATION CHÍNH
+   ========================================================= */
+
+#startScreen.sealing #talisman {
+    animation:
+        talismanSequence
+        1.75s
+        cubic-bezier(.18,.78,.12,1)
+        forwards;
+}
+
+/* Chuyển động giấy rất nhẹ */
+#startScreen.sealing #talisman img {
+    animation:
+        talismanPaperMotion
+        1.45s
+        ease-in-out
+        .72s
+        forwards,
+
+        talismanFlash
+        .58s
+        ease-out
+        1.20s
+        forwards;
+}
+
+/* Ánh sáng quét */
+#startScreen.sealing #talisman::before {
+    animation:
+        talismanLightSweep
+        .95s
+        ease-out
+        .78s
+        forwards;
+}
+
+
+/* =========================================================
+   BÙA XUẤT HIỆN → LƠ LỬNG → LAO VỀ CAMERA
+   ========================================================= */
+
+@keyframes talismanSequence {
+
+    /* Xuất hiện */
+    0% {
+        opacity: 0;
+
+        transform:
+            translate3d(-50%, -46%, 0)
+            scale(.28)
+            rotateZ(-18deg)
+            rotateX(15deg)
+            rotateY(-12deg);
+
+        filter:
+            blur(5px)
+            drop-shadow(0 0 0 rgba(255,210,70,0));
+    }
+
+    18% {
+        opacity: 1;
+
+        transform:
+            translate3d(-50%, -51%, 0)
+            scale(1.08)
+            rotateZ(7deg)
+            rotateX(-5deg)
+            rotateY(5deg);
+
+        filter:
+            blur(.35px)
+            drop-shadow(0 0 18px rgba(255,210,70,.62));
+    }
+
+    30% {
+        opacity: 1;
+
+        transform:
+            translate3d(-50%, -50%, 0)
+            scale(1)
+            rotateZ(0)
+            rotateX(0)
+            rotateY(0);
+
+        filter:
+            blur(0)
+            drop-shadow(0 0 12px rgba(255,210,70,.52));
+    }
+
+    /* Lá bùa lơ lửng tự nhiên */
+    38% {
+        transform:
+            translate3d(-50.7%, -50.8%, 0)
+            scale(1.01)
+            rotateZ(-1.8deg)
+            rotateX(1.2deg)
+            rotateY(-1deg);
+    }
+
+    46% {
+        transform:
+            translate3d(-49.5%, -49.2%, 0)
+            scale(1.012)
+            rotateZ(1.6deg)
+            rotateX(-1deg)
+            rotateY(1deg);
+    }
+
+    54% {
+        transform:
+            translate3d(-50.4%, -50.2%, 0)
+            scale(1.006)
+            rotateZ(-1deg)
+            rotateX(.7deg)
+            rotateY(-.8deg);
+    }
+
+    57% {
+        transform:
+            translate3d(-50%, -50%, 0)
+            scale(1)
+            rotateZ(0)
+            rotateX(0)
+            rotateY(0);
+    }
+
+
+    /* Bắt đầu lao về camera */
+    65% {
+        transform:
+            translate3d(-50%, -50%, 0)
+            scale(1.16)
+            rotateZ(-1.2deg)
+            rotateX(1deg)
+            rotateY(-1deg);
+    }
+
+    76% {
+        transform:
+            translate3d(-50%, -50%, 0)
+            scale(1.85)
+            rotateZ(1.8deg)
+            rotateX(-1.5deg)
+            rotateY(1.5deg);
+
+        filter:
+            blur(.15px)
+            drop-shadow(0 0 25px rgba(255,205,50,.68));
+    }
+
+    88% {
+        transform:
+            translate3d(-50%, -50%, 0)
+            scale(4.9)
+            rotateZ(-2.5deg)
+            rotateX(2deg)
+            rotateY(-2deg);
+
+        filter:
+            blur(.7px)
+            brightness(1.35)
+            drop-shadow(0 0 42px rgba(255,190,0,.66));
+    }
+
+    96% {
+        transform:
+            translate3d(-50%, -50%, 0)
+            scale(10.5)
+            rotateZ(3deg)
+            rotateX(-2deg)
+            rotateY(2deg);
+
+        filter:
+            blur(2.1px)
+            brightness(1.55)
+            drop-shadow(0 0 60px rgba(255,170,0,.5));
+    }
+
+    100% {
+        opacity: 0;
+
+        transform:
+            translate3d(-50%, -50%, 0)
+            scale(23)
+            rotateZ(-5deg)
+            rotateX(0)
+            rotateY(0);
+
+        filter:
+            blur(5px)
+            brightness(1.8)
+            drop-shadow(0 0 75px rgba(255,170,0,.2));
+    }
+}
+
+
+/* =========================================================
+   GIẤY RUNG NHẸ NHƯ GIẤY THẬT
+   ========================================================= */
+
+@keyframes talismanPaperMotion {
+
+    0%,
+    100% {
+        transform:
+            perspective(900px)
+            rotateY(0deg)
+            rotateX(0deg)
+            skewX(0deg);
+    }
+
+    25% {
+        transform:
+            perspective(900px)
+            rotateY(-3deg)
+            rotateX(1.2deg)
+            skewX(-.5deg);
+    }
+
+    50% {
+        transform:
+            perspective(900px)
+            rotateY(3.5deg)
+            rotateX(-1deg)
+            skewX(.65deg);
+    }
+
+    75% {
+        transform:
+            perspective(900px)
+            rotateY(-2deg)
+            rotateX(.7deg)
+            skewX(-.35deg);
+    }
+}
+
+
+/* =========================================================
+   ÁNH SÁNG QUÉT
+   ========================================================= */
+
+@keyframes talismanLightSweep {
+
+    0% {
+        opacity: 0;
+        background-position: 130% 0;
+    }
+
+    25% {
+        opacity: .9;
+    }
+
+    100% {
+        opacity: 0;
+        background-position: -130% 0;
+    }
+}
+
+
+/* =========================================================
+   NHẤP SÁNG NHẸ
+   ========================================================= */
+
+@keyframes talismanFlash {
+
+    0% {
+        filter:
+            saturate(.92)
+            contrast(1.04)
+            brightness(1.04);
+    }
+
+    45% {
+        filter:
+            saturate(1.06)
+            contrast(1.08)
+            brightness(1.30);
+    }
+
+    100% {
+        filter:
+            saturate(.96)
+            contrast(1.05)
+            brightness(1.08);
+    }
+}
+
+
+/* =========================================================
+   NÚT BIẾN MẤT
+   ========================================================= */
+
+@keyframes buttonDisappear {
+
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    to {
+        opacity: 0;
+        transform: scale(.6);
+    }
+}
+
+
+/* =========================================================
+   TIÊU ĐỀ BIẾN MẤT
+   ========================================================= */
+
+@keyframes titleDisappear {
+
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    to {
+        opacity: 0;
+        transform: scale(1.2);
+    }
+}
+
+
+/* =========================================================
+   MÀN ĐEN PHỦ
+   ========================================================= */
+
+@keyframes blackTransition {
+
+    0% {
+        opacity: 0;
+    }
+
+    40% {
+        opacity: .15;
+    }
+
+    70% {
+        opacity: .7;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+
+/* =========================================================
+   ÁNH MỰC TRÊN BÙA
+   ========================================================= */
+
+@keyframes talismanInk {
+
+    from {
+        text-shadow:
+            1px 1px 0 #5b0000,
+            0 0 3px rgba(150, 0, 0, .3);
+    }
+
+    to {
+        text-shadow:
+            1px 1px 0 #5b0000,
+            0 0 12px rgba(180, 0, 0, .65),
+            0 0 20px rgba(255, 0, 0, .15);
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    #startScreen h1 {
+        font-size: 42px;
+        letter-spacing: 1px;
+    }
+
+    #startBtn {
+        min-width: 235px;
+        padding: 16px 35px;
+        font-size: 28px;
+    }
+
+    #talisman {
+        width: 115px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    #startScreen::before,
+    #startScreen::after,
+    #startScreen h1,
+    #startBtn {
+        animation: none !important;
+    }
+}
+    </style>
+</head>
+
+<body id="top">
+
+<div id="startScreen">
+
+    <h1>ĐẠO SĨ CUỐI CÙNG</h1>
+
+    <button id="startBtn">
+        ▶ BẮT ĐẦU
+    </button>
+
+<!-- =========================================
+     LÁ BÙA GỐC
+     ========================================= -->
+<div id="talisman" aria-hidden="true">
+    <img
+        src="https://res.cloudinary.com/l5czhek5/image/upload/v1788282541/n%C3%B3_....png"
+        alt="Lá bùa"
+        draggable="false"
+    >
+</div>
+
+    <!-- MÀN ĐEN CHUYỂN CẢNH -->
+
+    <div id="sealBlack"></div>
+
+</div>
+
+    <div id="intro" style="display:none;">
+        <video id="introVideo" playsinline preload="auto">
+            <source src="https://res.cloudinary.com/mr29tktx/video/upload/v1783676229/0710_sq81b3.mp4" type="video/mp4">
+        </video>
+        <button id="skipBtn">Bỏ qua Intro</button>
+    </div>
+
+<div id="website">
+    <div id="profile" onclick="toggleMenu()">
+        <span id="avatar">U</span>
+    </div>
+
+        <div id="menu">
+            <h3 id="hello">Xin chào</h3>
+            <button class="btn-style" onclick="doiTen()">👤 Đổi tên</button>
+            <br><br>
+            <input type="file" id="bgFile" accept="image/*">
+        </div>
+
+        <h1>Đây chính là web lưu trữ tất cả tập phim Đạo Sĩ Cuối Cùng</h1>
+        <p>Chào mừng bạn đến với trang web của chúng tôi!</p>
+
+        <div class="search-box">
+            <input type="text" id="searchText" placeholder="🔍 Tìm phim hoặc tìm trên Internet">
+            <button class="btn-style" onclick="duckSearch()">Search</button>
+        </div>
+
+        <img src="https://res.cloudinary.com/mr29tktx/image/upload/v1783615002/t%C3%B4i_iqgqk4.png" alt="Hình ảnh main chính">
+
+        <ul>
+            <li>Danh sách các tập phim</li>
+        </ul>
+
+        <div class="movie-block">
+            <a href="https://res.cloudinary.com/mr29tktx/video/upload/v1783526960/T%E1%BA%ADp_1_dyuezj.mp4" target="_blank">Tập 1</a>
+            <br><br>
+            <video width="850" height="500" controls>
+                <source src="https://res.cloudinary.com/mr29tktx/video/upload/v1783526960/T%E1%BA%ADp_1_dyuezj.mp4" type="video/mp4">
+            </video>
+            <br>
+            <a href="https://res.cloudinary.com/mr29tktx/video/upload/fl_attachment/v1783526960/T%E1%BA%ADp_1_dyuezj.mp4" target="_blank" download="Đạo sĩ cuối cùng tập 1" class="btn-style">Bấm vào để tải xuống tập 1</a>
+        </div>
+
+        <div class="movie-block">
+            <a href="https://res.cloudinary.com/mr29tktx/video/upload/v1783526996/T%E1%BA%ADp_3_ghizqf.mp4" target="_blank">Tập 3</a>
+            <br><br>
+            <video width="850" height="500" controls>
+                <source src="https://res.cloudinary.com/mr29tktx/video/upload/v1783526996/T%E1%BA%ADp_3_ghizqf.mp4" type="video/mp4">
+            </video>
+            <br>
+            <a href="https://res.cloudinary.com/mr29tktx/video/upload/fl_attachment/v1783526996/T%E1%BA%ADp_3_ghizqf.mp4" target="_blank" download="Đạo sĩ cuối cùng tập 3" class="btn-style">Bấm vào để tải xuống tập 3</a>
+        </div>
+
+        <div class="movie-block">
+            <a href="https://res.cloudinary.com/mr29tktx/video/upload/v1783526979/t%E1%BA%ADp_5_z0gcgp.mp4" target="_blank">Tập 5</a>
+            <br><br>
+            <video width="850" height="500" controls>
+                <source src="https://res.cloudinary.com/mr29tktx/video/upload/v1783526979/t%E1%BA%ADp_5_z0gcgp.mp4" type="video/mp4">
+            </video>
+            <br>
+            <a href="https://res.cloudinary.com/mr29tktx/video/upload/fl_attachment/v1783526979/t%E1%BA%ADp_5_z0gcgp.mp4" target="_blank" download="Đạo sĩ cuối cùng tập 5" class="btn-style">Bấm vào để tải xuống tập 5</a>
+        </div>
+
+        <div class="movie-block">
+            <a href="https://res.cloudinary.com/mr29tktx/video/upload/v1783526963/T%E1%BA%ADp_6_qygylw.mp4" target="_blank">Tập 6</a>
+            <br><br>
+            <video width="850" height="500" controls>
+                <source src="https://res.cloudinary.com/mr29tktx/video/upload/v1783526963/T%E1%BA%ADp_6_qygylw.mp4" type="video/mp4">
+            </video>
+            <br>
+            <a href="https://res.cloudinary.com/mr29tktx/video/upload/fl_attachment/v1783526963/T%E1%BA%ADp_6_qygylw.mp4" target="_blank" download="Đạo sĩ cuối cùng tập 6" class="btn-style">Bấm vào để tải xuống tập 6</a>
+        </div>
+
+        <div class="movie-block">
+            <a href="https://res.cloudinary.com/mr29tktx/video/upload/v1783526994/T%E1%BA%ADp_7_atzegm.mp4" target="_blank">Tập 7</a>
+            <br><br>
+            <video width="850" height="500" controls>
+                <source src="https://res.cloudinary.com/mr29tktx/video/upload/v1783526994/T%E1%BA%ADp_7_atzegm.mp4" type="video/mp4">
+            </video>
+            <br>
+            <a href="https://res.cloudinary.com/mr29tktx/video/upload/fl_attachment/v1783526994/T%E1%BA%ADp_7_atzegm.mp4" target="_blank" download="Đạo sĩ cuối cùng tập 7" class="btn-style">Bấm vào để tải xuống tập 7</a>
+        </div>
+
+        <div class="movie-block">
+            <a href="https://res.cloudinary.com/mr29tktx/video/upload/v1783526945/T%E1%BA%ADp_8_hdja89.mp4" target="_blank">Tập 8</a>
+            <br><br>
+            <video width="850" height="500" controls>
+                <source src="https://res.cloudinary.com/mr29tktx/video/upload/v1783526945/T%E1%BA%ADp_8_hdja89.mp4" type="video/mp4">
+            </video>
+            <br>
+            <a href="https://res.cloudinary.com/mr29tktx/video/upload/fl_attachment/v1783526945/T%E1%BA%ADp_8_hdja89.mp4" target="_blank" download="Đạo sĩ cuối cùng tập 8" class="btn-style">Bấm vào để tải xuống tập 8</a>
+        </div>
+
+        <div class="movie-block">
+            <a href="https://res.cloudinary.com/mr29tktx/video/upload/v1783526951/T%E1%BA%ADp_10_ph%E1%BA%A7n_1_ojaybx.mp4" target="_blank">Tập 10 phần 1</a>
+            <br><br>
+            <video width="850" height="500" controls>
+                <source src="https://res.cloudinary.com/mr29tktx/video/upload/v1783526951/T%E1%BA%ADp_10_ph%E1%BA%A7n_1_ojaybx.mp4" type="video/mp4">
+            </video>
+            <br>
+            <a href="https://res.cloudinary.com/mr29tktx/video/upload/fl_attachment/v1783526951/T%E1%BA%ADp_10_ph%E1%BA%A7n_1_ojaybx.mp4" target="_blank" download="Đạo sĩ cuối cùng tập 10 phần 1" class="btn-style">Bấm vào để tải xuống tập 10 phần 1</a>
+        </div>
+
+        <div class="movie-block">
+            <a href="https://res.cloudinary.com/mr29tktx/video/upload/v1783526956/T%E1%BA%ADp_10_ph%E1%BA%A7n_2_esorbm.mp4" target="_blank">Tập 10 phần 2</a>
+            <br><br>
+
+            <video width="850" height="500" controls>
+                <source src="https://res.cloudinary.com/mr29tktx/video/upload/v1783526956/T%E1%BA%ADp_10_ph%E1%BA%A7n_2_esorbm.mp4" type="video/mp4">
+            </video>
+            <br>
+            <a href="https://res.cloudinary.com/mr29tktx/video/upload/fl_attachment/v1783526956/T%E1%BA%ADp_10_ph%E1%BA%A7n_2_esorbm.mp4" target="_blank" download="Đạo sĩ cuối cùng tập 10 phần 2" class="btn-style">Bấm vào để tải xuống tập 10 phần 2</a>
+        </div>
+
+        <!-- Này là tập 11 -->
+                    <div class="movie-block">
+            <a href="https://res.cloudinary.com/l5czhek5/video/upload/v1788278676/%C4%90%E1%BA%A1o_s%C4%A9_cu%E1%BB%91i_c%C3%B9ng_t%E1%BA%ADp_11.mp4" target="_blank">Tập 11</a>
+            <br><br>
+
+                       <video width="850" height="500" controls>
+                <source src="https://res.cloudinary.com/l5czhek5/video/upload/v1788278676/%C4%90%E1%BA%A1o_s%C4%A9_cu%E1%BB%91i_c%C3%B9ng_t%E1%BA%ADp_11.mp4" type="video/mp4">
+            </video>
+
+                        <br>
+            <a href="https://res.cloudinary.com/l5czhek5/video/upload/v1788278676/%C4%90%E1%BA%A1o_s%C4%A9_cu%E1%BB%91i_c%C3%B9ng_t%E1%BA%ADp_11.mp4" target="_blank" download="Đạo sĩ cuối cùng tập 12" class="btn-style">Bấm vào để tải xuống tập 11</a>
+        </div>
+
+
+        <!-- Đây là tập 12 -->
+
+            <div class="movie-block">
+            <a href="https://res.cloudinary.com/l5czhek5/video/upload/v1788252998/T%E1%BA%ADp_12.mp4" target="_blank">Tập 12</a>
+            <br><br>
+
+                       <video width="850" height="500" controls>
+                <source src="https://res.cloudinary.com/l5czhek5/video/upload/v1788252998/T%E1%BA%ADp_12.mp4" type="video/mp4">
+            </video>
+
+                        <br>
+            <a href="https://res.cloudinary.com/l5czhek5/video/upload/v1788252998/T%E1%BA%ADp_12.mp4" target="_blank" download="Đạo sĩ cuối cùng tập 12" class="btn-style">Bấm vào để tải xuống tập 12</a>
+        </div>
+
+        <div class="movie-block">
+            <audio controls>
+                <source src="https://res.cloudinary.com/mr29tktx/video/upload/v1783526840/Nh%E1%BA%A1c_phim_c%C6%B0%C6%A1ng_thi_-L%C3%82M_CH%C3%81NH_ANH_llwl6w.mp3" type="audio/mpeg">
+            </audio>
+        </div>
+
+        <div class="movie-block">
+            <a href="https://res.cloudinary.com/mr29tktx/video/upload/v1783526991/Thi%C3%AAn_s%E1%BB%A9_b%E1%BA%AFt_ma_ph%E1%BA%A7n_1_wqmhgb.mp4" target="_blank">Thiên sứ bắt ma phần 1,2,3</a>
+            <br><br>
+            <video width="850" height="500" controls>
+                <source src="https://res.cloudinary.com/mr29tktx/video/upload/v1783526991/Thi%C3%AAn_s%E1%BB%A9_b%E1%BA%AFt_ma_ph%E1%BA%A7n_1_wqmhgb.mp4" type="video/mp4">
+            </video>
+            <br><br>
+            <video width="850" height="500" controls>
+                <source src="https://res.cloudinary.com/mr29tktx/video/upload/v1783526974/Thi%C3%AAn_s%E1%BB%A9_b%E1%BA%AFt_ma_ph%E1%BA%A7n_2_nbpbs3.mp4" type="video/mp4">
+            </video>
+            <br><br>
+            <video width="850" height="500" controls>
+                <source src="https://res.cloudinary.com/mr29tktx/video/upload/v1783526985/Thi%C3%AAn_s%E1%BB%A9_b%E1%BA%AFt_ma_ph%E1%BA%A7n_3_rhfl9a.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <div class="movie-block">
+            <audio controls>
+                <source src="https://res.cloudinary.com/mr29tktx/video/upload/v1783526836/C%C6%B0%C6%A1ng_thi_%C4%91%E1%BA%A1o_tr%C6%B0%E1%BB%9Fng_azuizm.mp3" type="audio/mpeg">
+            </audio>
+        </div>
+
+
+        <div class="movie-block">
+            <iframe width="850" height="500" src="https://www.youtube.com/embed/x6J7ji8VBpA" title="Rigor Mortis (2013)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+
+        <div class="movie-block">
+            <a href="https://www.youtube.com/embed/W_OaT4p-GcU?si=kVk9d4bbhl4Gx42h" target="_blank">Full bộ thiên sứ bắt ma phần 1</a>
+            <br><br>
+            <iframe width="850" height="500" src="https://www.youtube.com/embed/W_OaT4p-GcU?si=kVk9d4bbhl4Gx42h" title="Đặc cảnh diệt ma" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+
+        <div class="movie-block">
+            <iframe width="850" height="500" src="https://www.youtube.com/embed/G1KHvVcwgOQ?si=MbqxET4rYrbsJBYk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+
+        <div class="movie-block">
+            <iframe width="850" height="500" src="https://www.youtube.com/embed/T6tGDRCYykE?si=2C2Amj_Ub-R6NN-N" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+
+        <div class="movie-block">
+            <iframe width="850" height="500" src="https://www.youtube.com/embed/I4Zx_fZmMmM?si=ZKJ6ZHD7YJTGWdX7" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+
+        <div class="movie-block">
+            <iframe width="850" height="500" src="https://www.youtube.com/embed/iTa2ZTmMPX4?si=qaiJntuj8bG_Q-2m" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+
+        <div class="movie-block">
+            <iframe width="850" height="500" src="https://www.youtube.com/embed/lcmSfOnUcXk?si=ydpKThcCB1dc5MMl" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+
+        <div class="movie-block">
+            <iframe width="850" height="500" src="https://www.youtube.com/embed/WHdr0EGIRIc?si=h4k40sP3I7z6t_qV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+
+        <div class="movie-block">
+            <iframe width="850" height="500" src="https://www.youtube.com/embed/Dflmu6PCZeg?si=4Ytl24aujJZ678MK" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+
+        <div class="movie-block">
+            <iframe width="850" height="500" src="https://www.youtube.com/embed/8xuMYS7EsKk?si=zB2HfsA7HrkzySVx" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+
+        <div class="movie-block">
+            <iframe width="850" height="500" src="https://www.youtube.com/embed/7TVTYFoWUio?si=DkMGvtqzobS3aG9e" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+
+        <div class="movie-block">
+            <iframe width="850" height="500" src="https://www.youtube.com/embed/7ui9Y-uiOv8?si=TBkN0lCYR95rYyKs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+
+        <div class="movie-block">
+            <iframe width="850" height="500" src="https://www.youtube.com/embed/d8aMIrapzgM?si=0KGY3ij6_aSLyGx3" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+
+        <div class="movie-block">
+            <iframe width="850" height="500" src="https://www.youtube.com/embed/KNBdW4Vkbkc?si=aKhQwe36aNtlCxZ3" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+
+        <div class="movie-block">
+            <a href="https://www.youtube.com/embed/vmwVYa0HTLk?si=rzsS0gjQywAuiqIs" target="_blank">Full bộ Khử ma đạo trưởng</a>
+            <br><br>
+            <iframe width="850" height="500" src="https://www.youtube.com/embed/vmwVYa0HTLk?si=rzsS0gjQywAuiqIs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+
+        <div class="movie-block">
+            <a href="https://www.youtube-nocookie.com/embed/sNchA7Wf4zk?si=xqGKbImPIV9TAKUv" target="_blank">When Fortune Smiles (1990) Vô Địch Vận Hanh Tinh</a>
+            <br><br>
+            <iframe width="850" height="500" src="https://www.youtube-nocookie.com/embed/sNchA7Wf4zk?si=xqGKbImPIV9TAKUv" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+
+        <div class="movie-block">
+            <iframe width="850" height="500" src="https://www.youtube.com/embed/XN_ALfbkB2M?si=_Jvf5P9drGjn2qCY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+
+        <div class="movie-block">
+            <a href="https://www.youtube-nocookie.com/embed/PVGj1N-871Y?si=1-ZClK5FGjderAYI" target="_blank">Long Hổ Đặc Cảnh</a>
+            <br><br>
+            <iframe width="850" height="500" src="https://www.youtube-nocookie.com/embed/PVGj1N-871Y?si=1-ZClK5FGjderAYI" title="Mãnh Long Đặc Cảnh" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+
+
+        <!-- Xem phim cương thi thúc thúc 1988 -->
+
+<div class="movie-block">
+    <a href="https://drive.google.com/file/d/1QPn_Orl_Q5M8YxoLMdQ0ZvY-pAFV257f/view?usp=sharing"
+       target="_blank">
+        Cương thi thúc thúc 1988
+    </a>
+
+    <br><br>
+
+    <a href="https://drive.google.com/file/d/1QPn_Orl_Q5M8YxoLMdQ0ZvY-pAFV257f/view?usp=sharing"
+       target="_blank"
+       class="btn-style">
+        ▶ Xem Cương thi thúc thúc 1988
+    </a>
+</div>
+        <div style="margin: 30px 0;">
+            <a href="https://tranhuu1952.blogspot.com/2026/06/tran-huu.html" target="_blank" class="btn-style">Bấm vào đây để vào Blog cá nhân</a>
+            <br><br><br>
+            <a href="http://127.0.0.1:5500/" class="btn-style">Live Server</a>
+        </div>
+
+        <footer>
+            <p>&copy; Bản quyền thuộc về Đạo sĩ cuối cùng. All rights reserved.</p>
+        </footer>
+
+        <a href="#top" class="top-btn">⬆ Quay lại đầu trang</a>
+
+        <img src="https://res.cloudinary.com/mr29tktx/image/upload/v1783526766/t%E1%BA%A3i_xu%E1%BB%91ng_a8h5am.png" loading="lazy" alt="Hình ảnh">
+
+    </div>
+
+    <script>
+        let ten = prompt("Nhập tên đăng nhập:");
+
+        if (ten == null || ten.trim() == "") {
+            ten = "Người dùng";
+        }
+
+        document.getElementById("avatar").textContent =
+ten ? ten.charAt(0).toUpperCase() : "U";
+        document.getElementById("hello").innerHTML = "Xin chào " + ten;
+
+        function toggleMenu() {
+            let menu = document.getElementById("menu");
+            if (menu.style.display == "block") {
+                menu.style.display = "none";
+            } else {
+                menu.style.display = "block";
+            }
+        }
+
+        function doiTen() {
+            let t = prompt("Nhập tên mới:");
+            if (t && t.trim() != "") {
+                ten = t.trim();
+                document.getElementById("avatar").innerHTML = ten.charAt(0).toUpperCase();
+                document.getElementById("hello").innerHTML = "Xin chào " + ten;
+            }
+        }
+
+        let bg = localStorage.getItem("background");
+        if (bg) {
+            document.body.style.backgroundImage = "url('" + bg + "')";
+            document.body.style.backgroundSize = "cover";
+            document.body.style.backgroundPosition = "center";
+            document.body.style.backgroundAttachment = "fixed";
+        }
+
+        let bgFile = document.getElementById("bgFile");
+        if (bgFile) {
+            bgFile.onchange = function() {
+                let file = this.files[0];
+                if (!file) return;
+                let reader = new FileReader();
+                reader.onload = function() {
+                    document.body.style.backgroundImage = "url('" + reader.result + "')";
+                    document.body.style.backgroundSize = "cover";
+                    document.body.style.backgroundPosition = "center";
+                    document.body.style.backgroundAttachment = "fixed";
+                    localStorage.setItem("background", reader.result);
+                };
+                reader.readAsDataURL(file);
+            };
+        }
+
+        history.scrollRestoration = "manual";
+
+        window.addEventListener("load", function () {
+            window.scrollTo(0, 0);
+        });
+
+        document.addEventListener("mousemove", function(e) {
+            let dot = document.createElement("div");
+            dot.className = "firefly";
+            dot.style.left = (e.clientX - 8) + "px";
+            dot.style.top = (e.clientY - 8) + "px";
+            
+            document.body.appendChild(dot);
+            setTimeout(function() {
+                dot.remove();
+            }, 1500);
+        });
+
+        function duckSearch() {
+            const text = document.getElementById("searchText").value.trim();
+            if (text == "") return;
+            window.open("https://duckduckgo.com/?q=" + encodeURIComponent(text), "_blank");
+        }
+
+        function searchMovie() {
+            const text = document.getElementById("searchText").value.toLowerCase().trim();
+            document.querySelectorAll(".movie-block").forEach(function(x) {
+                const t = x.textContent.toLowerCase();
+                if (t.includes(text) || text == "") {
+                    x.style.display = "";
+                } else {
+                    x.style.display = "none";
+                }
+            });
+        }
+
+        const input = document.getElementById("searchText");
+
+        input.addEventListener("keydown", function(e) {
+            if (e.key === "Enter") {
+                e.preventDefault();
+                duckSearch();
+            }
+        });
+
+        input.addEventListener("focus", function() {
+            this.style.boxShadow = "0 0 20px gold,0 0 50px yellow";
+            this.style.transform = "scale(1.05)";
+        });
+
+input.addEventListener("blur", function() {
+    this.style.boxShadow = "";
+    this.style.transform = "scale(1)";
+});
+
+        input.addEventListener("blur", function() {
+            this.style.boxShadow = "none";
+            this.style.background = "#222";
+            this.style.borderColor = "gold";
+            this.style.transform = "scale(1)";
+        });
+
+        const intro = document.getElementById("intro");
+        const video = document.getElementById("introVideo");
+        const website = document.getElementById("website");
+        const startScreen = document.getElementById("startScreen");
+
+
+        video.onended = function() {
+    intro.style.opacity = "0";
+    intro.style.transition = "1s";
+    setTimeout(function() {
+        intro.remove();
+        website.style.display = "block";
+    }, 1000);
+};
+
+/* =========================================================
+   BẮT ĐẦU
+   → LÁ BÙA
+   → PHÓNG TO
+   → MÀN HÌNH ĐEN
+   → INTRO
+   ========================================================= */
+
+const startButton =
+    document.getElementById("startBtn");
+
+const talisman =
+    document.getElementById("talisman");
+
+const sealBlack =
+    document.getElementById("sealBlack");
+
+
+startButton.addEventListener("click", function () {
+
+    /* Chống bấm nhiều lần */
+    if (
+        startScreen.classList.contains("sealing")
+    ) {
+        return;
+    }
+
+    /* Kích hoạt animation */
+    startScreen.classList.add("sealing");
+
+    /*
+       Đợi lá bùa phóng to và màn hình
+       chuyển sang màu đen.
+    */
+
+    setTimeout(function () {
+
+        /* Ẩn màn hình bắt đầu */
+        startScreen.style.display = "none";
+
+        /* Hiện Intro */
+        intro.style.display = "flex";
+
+        intro.style.opacity = "1";
+
+        /* Reset video */
+        video.currentTime = 0;
+
+        video.muted = false;
+
+        /* Phát Intro */
+        const playPromise = video.play();
+
+        if (playPromise !== undefined) {
+
+            playPromise.catch(function () {
+
+                /*
+                   Nếu trình duyệt chặn autoplay
+                   có âm thanh thì thử muted.
+                */
+
+                video.muted = true;
+
+                video.play().catch(
+                    function () {}
+                );
+
+            });
+
+        }
+
+    }, 1850);
+
+});
+
+        video.onended = function() {
+            intro.style.opacity = "0";
+            intro.style.transition = "1s";
+            setTimeout(function() {
+                intro.remove();
+                website.style.display = "block";
+            }, 1000);
+        };
+
+        document.getElementById("skipBtn").onclick = function() {
+            video.pause();
+            intro.remove();
+            website.style.display = "block";
+        };
+    </script>
+</body>
+</html>
